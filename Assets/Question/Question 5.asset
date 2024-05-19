@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10086e2a3b194a4296947a561faca0f, type: 3}
+  m_Name: Question 5
+  m_EditorClassIdentifier: 
+  questionText: "ai l\xE0 ng\u01B0\u1EDDi \u0111\xE3 n\xF3i c\xE2u: \"T\xF4i y\xEAu
+    Anime\" 3 l\u1EA7n ?\n"
+  answers:
+  - "Ph\u01B0\u1EDBc"
+  - Ken
+  - "Th\u1EA1ch"
+  - "Th\xE0nh"
+  correctAnswerIndex: 0

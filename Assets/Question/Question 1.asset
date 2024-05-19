@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10086e2a3b194a4296947a561faca0f, type: 3}
+  m_Name: Question 1
+  m_EditorClassIdentifier: 
+  questionText: "N\u1EBFu em \u1EDF tr\xEAn l\u1EA7u cao, c\xF3 1 mi\u1EBFng th\u1ECBt
+    \u1EDF d\u01B0\u1EDBi th\xEC em th\u1EA3 c\xE1i g\xEC xu\u1ED1ng ?"
+  answers:
+  - "Mu\u1ED1i"
+  - Content
+  - Dao
+  - "Li\xEAm s\u1EC9"
+  correctAnswerIndex: 2
