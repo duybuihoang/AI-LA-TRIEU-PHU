@@ -4,13 +4,13 @@ using UnityEngine;
 using TMPro;
 using System.ComponentModel;
 using UnityEngine.UI;
-using System;
 
 public class Quiz : MonoBehaviour
 {
-    [Header("Questions")]
-    [SerializeField] QuestionSO question;
+    [Header("Questions")]    
     [SerializeField] TextMeshProUGUI questionText;
+    QuestionSO currentQuestion;
+    [SerializeField] List<QuestionSO> questions = new List<QuestionSO>();
 
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
@@ -28,7 +28,7 @@ public class Quiz : MonoBehaviour
     void Start()
     {
         timer = FindObjectOfType<Timer>();
-        getNextQuestion();
+        //getNextQuestion();
     }
 
     private void Update()
@@ -50,7 +50,7 @@ public class Quiz : MonoBehaviour
 
     private void displayQuestion()
     {
-        questionText.text = question.getQuestionText();
+        questionText.text = currentQuestion.getQuestionText();
         showAnswer();
 
     }
@@ -59,14 +59,14 @@ public class Quiz : MonoBehaviour
         for (int i = 0; i < answerButtons.Length; i++)
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = question.getAnswers(i);
+            buttonText.text = currentQuestion.getAnswers(i);
         }
     }
 
     public void displayAnswer(int index)
     {
         Image imageButton;
-        if (index == question.getCorrectAnswerIndex())
+        if (index == currentQuestion.getCorrectAnswerIndex())
         {
             questionText.text = "Chính xác!";
             imageButton = answerButtons[index].GetComponent<Image>();
@@ -74,16 +74,16 @@ public class Quiz : MonoBehaviour
         }
         else if(index == -1)
         {
-            correcAnswerIndex = question.getCorrectAnswerIndex();
-            string correcAnswer = question.getAnswers(correcAnswerIndex);
+            correcAnswerIndex = currentQuestion.getCorrectAnswerIndex();
+            string correcAnswer = currentQuestion.getAnswers(correcAnswerIndex);
             questionText.text = "Hết giờ, Câu trả lời chính xác là\n" + correcAnswer;
             imageButton = answerButtons[correcAnswerIndex].GetComponent<Image>();
             imageButton.sprite = correctAnswerSprite;
         }
         else
         {
-            correcAnswerIndex = question.getCorrectAnswerIndex();
-            string correcAnswer = question.getAnswers(correcAnswerIndex);
+            correcAnswerIndex = currentQuestion.getCorrectAnswerIndex();
+            string correcAnswer = currentQuestion.getAnswers(correcAnswerIndex);
             questionText.text = "Sai, Câu trả lời chính xác là\n" + correcAnswer;
             imageButton = answerButtons[correcAnswerIndex].GetComponent<Image>();
             imageButton.sprite = correctAnswerSprite;
@@ -111,10 +111,25 @@ public class Quiz : MonoBehaviour
 
     private void getNextQuestion()
     {
-        setButtonState(true);
-        resetButton();
-        displayQuestion();
+        if (questions.Count > 0)
+        {
+            setButtonState(true);
+            resetButton();
+            getRandomQuestion();
+            displayQuestion();
+        }
     }
+
+    void getRandomQuestion()
+    {
+        int index = Random.Range(0, questions.Count);
+        currentQuestion = questions[index];
+        if (questions.Contains(currentQuestion))
+        {
+            questions.Remove(currentQuestion);
+        }
+    }
+
 
     void resetButton()
     {
