@@ -130,7 +130,6 @@ public class Quiz : MonoBehaviour
         }
     }
 
-
     void resetButton()
     {
         for (int i = 0; i < answerButtons.Length; i++)
@@ -139,6 +138,4 @@ public class Quiz : MonoBehaviour
             imageButton.sprite = defaulAnswerSprite;
         }
     }
-
-   
 }
