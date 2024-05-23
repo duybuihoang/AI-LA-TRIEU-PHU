@@ -25,9 +25,15 @@ public class Quiz : MonoBehaviour
     [SerializeField] Image imageTimer;
     Timer timer;
 
+    [Header("Scoring")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    ScoreKeeper scoreKeeper;
+
+
     void Start()
     {
         timer = FindObjectOfType<Timer>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         //getNextQuestion();
     }
 
@@ -71,6 +77,7 @@ public class Quiz : MonoBehaviour
             questionText.text = "Chính xác!";
             imageButton = answerButtons[index].GetComponent<Image>();
             imageButton.sprite = correctAnswerSprite;
+            scoreKeeper.incrementCorrectAnswer();
         }
         else if(index == -1)
         {
@@ -97,6 +104,8 @@ public class Quiz : MonoBehaviour
         displayAnswer(index);
         setButtonState(false);
         timer.cancelTimer();
+
+        scoreText.text =  "score: " + scoreKeeper.calculateScore() + "%";
     }
 
     void setButtonState(bool state)
@@ -117,6 +126,7 @@ public class Quiz : MonoBehaviour
             resetButton();
             getRandomQuestion();
             displayQuestion();
+            scoreKeeper.incrementQuestionsSeen();
         }
     }
 
