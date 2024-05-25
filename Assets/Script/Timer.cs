@@ -17,10 +17,11 @@ public class Timer : MonoBehaviour
     {
         updateTimer();
     }
+
     void updateTimer()
     {
         timerValue -= Time.deltaTime;
-
+            
         if (isAnsweringQuestion)
         {
             if (timerValue > 0)
@@ -47,6 +48,7 @@ public class Timer : MonoBehaviour
             }
         }
     }
+
     public void cancelTimer()
     {
         timerValue = 0;
