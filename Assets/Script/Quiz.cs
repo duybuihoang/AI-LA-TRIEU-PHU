@@ -31,9 +31,9 @@ public class Quiz : MonoBehaviour
 
     [Header("ProgressBar")]
     [SerializeField] Slider progressBar;
-    public bool isCopmplete;
+    public bool isComplete;
 
-
+  
 
     void Start()
     {
@@ -50,6 +50,13 @@ public class Quiz : MonoBehaviour
 
         if(timer.loadNextQuestion)
         {
+            if (progressBar.value == progressBar.maxValue)
+            {
+                isComplete = true;
+                return;
+            }
+
+
             hasAnsweredEarly = false;
             getNextQuestion();
             timer.loadNextQuestion = false;
@@ -116,7 +123,7 @@ public class Quiz : MonoBehaviour
 
         if(progressBar.value == progressBar.maxValue)
         {
-            isCopmplete = true;
+            isComplete = true;
         }
     }
 
